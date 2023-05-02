@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Junyi Knowledge Map
+
+This application generates a visualization of a network roadmap based on a CSV data file containing a knowledge tree, making it easy to see the interconnected nodes within the tree.
 
 ## Pre-requirements
 
@@ -29,3 +31,17 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 ## Deploy on Github
 
 Here is the Github page: [https://junyiacademy.github.io/junyi-knowledge-map-next/](https://junyiacademy.github.io/junyi-knowledge-map-next/)
+
+## Folder Structures
+
+```
+junyi-knowledge-map-next
+├── pages
+│   └── index.tsx (The main page of this app)
+└── components
+    ├── hooks
+    │   ├── useVisNetwork.ts (Custom hook for building VisNetwork)
+    │   └── useFetchData.ts (Fetch topic csv file)
+    └── layer
+        └── Layout.tsx (Shared layout)
+```
