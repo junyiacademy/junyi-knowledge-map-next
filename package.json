@@ -3,20 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "watch": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6",
+    "@mui/icons-material": "5.11.16",
+    "@mui/material": "5.12.2",
+    "@tanstack/react-query": "4.29.5",
+    "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/node": "18.16.1",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "axios": "1.3.6",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "lodash": "4.17.21",
     "next": "13.3.1",
+    "prettier": "2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "vis-network": "^9.1.6"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.194"
   }
 }
