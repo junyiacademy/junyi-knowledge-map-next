@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPageWithLayout } from 'next';
 import find from 'lodash/find';
-import { Edge, Node, Options } from 'vis-network';
+import { Edge, IdType, Node, Options } from 'vis-network';
 import useFetchData from '@/components/hooks/useFetchData';
 import UseVisNetwork from '@/components/hooks/useVisNetwork';
 import Layout from '../components/layer/Layout';
@@ -108,6 +108,8 @@ const Home: NextPageWithLayout = () => {
       return;
     }
     network.on('click', onNodeClick);
+    network.fit();
+    network.focus(csvData.nodes[0].id as IdType, { scale: 1 });
     return () => network.off('click', onNodeClick);
   }, [network]);
 
