@@ -38,10 +38,7 @@ Here is the Github page: [https://junyiacademy.github.io/junyi-knowledge-map-nex
 junyi-knowledge-map-next
 ├── pages
 │   └── index.tsx (The main page of this app)
-└── components
-    ├── hooks
-    │   ├── useVisNetwork.ts (Custom hook for building VisNetwork)
-    │   └── useFetchData.ts (Fetch topic csv file)
-    └── layer
-        └── Layout.tsx (Shared layout)
+├── components
+│   └── layer(Shared layout)
+└── hooks (Custom hooks)
 ```

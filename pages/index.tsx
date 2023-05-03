@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPageWithLayout } from 'next';
-import find from 'lodash/find';
-import { Edge, IdType, Node, Options } from 'vis-network';
-import useFetchData from '@/components/hooks/useFetchData';
-import UseVisNetwork from '@/components/hooks/useVisNetwork';
-import Layout from '../components/layer/Layout';
-
-interface NodeClickEvent {
-  nodes: Node[];
-  edges: Edge[];
-  event: MouseEvent;
-  pointer: {
-    DOM: { x: number; y: number };
-    canvas: { x: number; y: number };
-  };
-  item: string | null;
-}
+import { Edge, Node } from 'vis-network';
+import { Box } from '@mui/material';
+import useFetchData from '@/hooks/useFetchData';
+import Layout from '@/components/layer/Layout';
+import RoadMap from '@/components/road-map';
 
 interface CustomNode extends Node {
   name: string;
@@ -26,46 +15,10 @@ type CsvData = {
   edges: Edge[];
 };
 
-const options: Options = {
-  nodes: {
-    color: {
-      background: 'lightgray',
-      hover: 'SILVER',
-      highlight: 'SILVER',
-    },
-    borderWidth: 0,
-  },
-  edges: {
-    arrows: 'to',
-    arrowStrikethrough: false,
-    smooth: false,
-  },
-  layout: {
-    hierarchical: {
-      enabled: true,
-      direction: 'UD',
-      edgeMinimization: true,
-      levelSeparation: 350,
-      nodeSpacing: 350,
-      blockShifting: true,
-      parentCentralization: true,
-      sortMethod: 'directed',
-    },
-  },
-  physics: {
-    enabled: false,
-  },
-  height: '1000px',
-};
-
 const Home: NextPageWithLayout = () => {
   const { data: queryData, isSuccess } = useFetchData();
   const [csvData, setCsvData] = useState<CsvData>({ edges: [], nodes: [] });
-  const { ref, network } = UseVisNetwork({
-    options,
-    edges: csvData.edges,
-    nodes: csvData.nodes,
-  });
+
   useEffect(() => {
     if (isSuccess && queryData) {
       const rows = queryData.split('\n');
@@ -95,28 +48,15 @@ const Home: NextPageWithLayout = () => {
     }
   }, [queryData]);
 
-  const onNodeClick = (event: NodeClickEvent) => {
-    const nodeId = event.nodes[0];
-    if (nodeId) {
-      const nodeData = find(csvData.nodes, { id: nodeId });
-      console.log(nodeData);
-    }
-  };
-
-  useEffect(() => {
-    if (!network) {
-      return;
-    }
-    network.on('click', onNodeClick);
-    network.fit();
-    network.focus(csvData.nodes[0].id as IdType, { scale: 1 });
-    return () => network.off('click', onNodeClick);
-  }, [network]);
-
   return (
-    <>
-      <div style={{ height: 700, width: '100%' }} ref={ref} />
-    </>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      <RoadMap roadMapData={csvData} />
+    </Box>
   );
 };
 
