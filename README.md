@@ -39,6 +39,9 @@ junyi-knowledge-map-next
 ├── pages
 │   └── index.tsx (The main page of this app)
 ├── components
-│   └── layer(Shared layout)
-└── hooks (Custom hooks)
+│   ├── layer (Shared layout)
+│   └── ui (Shared custom mui component)
+├── hooks (Custom hooks)
+├── interfaces (Shared interfaces)
+└── utils (Shared utils)
 ```
